@@ -6,7 +6,10 @@ on:
       published 
     
 jobs:
+    
     npm-package:
+      permissions:
+        packages: write 
       runs-on: ubuntu-latest
       steps:
         - name: Checkout Repository
@@ -20,3 +23,10 @@ jobs:
 
         - name: install dependencies
           run: npm install
+
+        - run: npm publish
+          env: 
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           
+
+
